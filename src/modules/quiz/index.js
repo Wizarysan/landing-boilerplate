@@ -60,7 +60,7 @@ export default class Quiz {
             this.target.querySelector('.quiz__counter').innerHTML = 'Готово!';
             return;
         }
-        this.target.querySelector('.quiz__counter').innerHTML = counter + ' / ' + this.questionsCount;
+        this.target.querySelector('.quiz__counter').innerHTML = 'Вопросы: ' + counter + ' / ' + this.questionsCount;
     }
 
     setQuestion(qi) {
