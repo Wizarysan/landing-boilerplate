@@ -2,7 +2,7 @@
     position: relative;   
     padding: 30px;
     margin: 30px auto;
-    max-width: 1100px;
+    max-width: 1200px;
     background-color: #ebedf2;
     border-radius: 15px;
     -webkit-box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.45);
@@ -32,7 +32,10 @@
         display: flex;
         align-items: stretch;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: center;
+        @include breakpoint(lg) {
+            justify-content: start; 
+        }
     }
     &__answer {
         font-size: 23px;
@@ -45,7 +48,9 @@
         max-width: 250px;
         vertical-align: top;
         &:hover {
-            border: 1px solid #94d43b;
+            border: 1px solid white;
+            background: white;
+            color:black;
             -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.44);
             -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.44);
             box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.44);
@@ -79,3 +84,10 @@
         }  
     }
 }
+
+//ZT-fix
+@media (min-width: 1100px) {
+    .quiz__answers {
+      justify-content: start; 
+    }
+  }
