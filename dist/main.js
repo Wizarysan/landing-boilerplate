@@ -4411,8 +4411,9 @@ function () {
   quiz_createClass(Quiz, [{
     key: "chooseAnswer",
     value: function chooseAnswer(qi, id, qst) {
-      this.chosen[qi] = "".concat(qi + 1, ") ").concat(qst.substring(0, 10), "... - ").concat(id + 1, " ");
-      console.log(this.chosen);
+      this.chosen[qi] = "".concat(qi + 1, ") ").concat(qst.substring(0, 10), "... - ").concat(id + 1, " "); //window.ztQuizChosen = this.chosen;
+
+      $('#js-quiz-results').val(this.chosen);
       this.setQuestion(qi + 1);
     }
   }, {

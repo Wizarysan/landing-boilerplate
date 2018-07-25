@@ -51,7 +51,8 @@ export default class Quiz {
 
     chooseAnswer(qi, id, qst) {
         this.chosen[qi] = `${qi+1}) ${qst.substring(0, 10)}... - ${id+1} `;
-        console.log(this.chosen)
+        //window.ztQuizChosen = this.chosen;
+        $('#js-quiz-results').val(this.chosen)
         this.setQuestion(qi+1)
     }
 
