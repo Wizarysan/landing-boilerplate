@@ -2,6 +2,7 @@
 @import "../../node_modules/bulma/bulma.sass";
 @import '../../node_modules/aos/dist/aos.css';
 @import "mixins.scss";
+@import "animations.scss";
 
 @import "../modules/modal/modal.scss";
 
@@ -13,6 +14,11 @@ $color-orange: #f98a09;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+}
+
+.form-example {
+  width: 90%;
+  margin: 0 auto;
 }
 
 .responsive-mixin-example {

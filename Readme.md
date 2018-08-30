@@ -3,7 +3,10 @@
 - SCSS build and autoprefixer
 - Bulma framework (imported in main.scss as whole but can be modular <https://bulma.io/documentation/overview/modular/> ) 
 - Custom SCSS mixins (breakpoints)
+- Fontawesome 5 icons (imported in head)
 - AOS (don't forget to init if needed)
+- Custom modal module
+- Utility functions (fn after page load)
 
 #### Made with reference to:
 
@@ -11,6 +14,7 @@
 <https://www.valentinog.com/blog/from-gulp-to-webpack-4-tutorial/#Switching_from_Gulp_to_webpack_compiling_SASS_to_CSS_adding_vendor_prefixes_to_CSS>
 <https://medium.com/developing-with-sass/creating-a-dead-simple-sass-mixin-to-handle-responsive-breakpoints-889927b37740>
 <https://github.com/michalsnik/aos>
+<https://fontawesome.com/how-to-use/on-the-web/setup/getting-started?using=web-fonts-with-css>
 
 Customise Bulma with:
 <https://bulma.io/documentation/customize/with-node-sass/#6-add-your-own-bulma-styles>

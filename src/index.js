@@ -1,9 +1,8 @@
-console.log(`I've been required by Webpack`);
 import style from "./_scss/main.scss";
 import AOS from 'aos';
-
 import { ready } from './modules/utility';
 import Modal from './modules/modal';
+import { collectForm } from './modules/form';
 
 /* Add modal explictly to prevent mess */
 let addModals = () => {    
@@ -14,4 +13,15 @@ let addModals = () => {
     document.querySelector('.js-open-modal2').addEventListener('click', ()=>{testModal2.open()})
 }
 
-ready([addModals])
+let prepareForms = () => {
+    let formsButtons = document.querySelectorAll('.js-submit-form');
+    console.log(formsButtons)
+    Array.from(formsButtons).forEach(button => {        
+        button.addEventListener('click', event => {
+            event.preventDefault();
+            collectForm(button.closest('form'))            
+        })
+    })
+}
+
+ready([addModals, prepareForms])
