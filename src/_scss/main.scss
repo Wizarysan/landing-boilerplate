@@ -3,6 +3,8 @@
 @import '../../node_modules/aos/dist/aos.css';
 @import "mixins.scss";
 
+@import "../modules/modal/modal.scss";
+
 $color-orange: #f98a09;
 
 .main {
