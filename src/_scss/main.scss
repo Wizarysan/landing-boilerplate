@@ -1,0 +1,21 @@
+@charset "utf-8";
+@import "../../node_modules/bulma/bulma.sass";
+@import '../../node_modules/aos/dist/aos.css';
+@import "mixins.scss";
+
+$color-orange: #f98a09;
+
+.main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.responsive-mixin-example {
+  @include breakpoint(sm) {
+    background: $color-orange;
+    width: 100%;
+  }  
+}
