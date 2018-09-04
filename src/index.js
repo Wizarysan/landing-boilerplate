@@ -11,7 +11,12 @@ let addModals = () => {
 }
 
 let prepareForms = () => {
-    const testForm = new Form(document.querySelector('.test-form'))
+    const testForm = new Form(
+        document.querySelector('.test-form'),
+        'test.php', 
+        undefined, 
+        {wrapper: '.field', error: '.error-message', fieldWarningClass: 'is-danger'}
+    )
 }
 
 ready([addModals, prepareForms])

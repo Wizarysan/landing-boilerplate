@@ -7,6 +7,7 @@
 - AOS (don't forget to init if needed)
 - Custom modal module
 - Utility functions (fn after page load)
+- Custom form processing module
 
 #### Made with reference to:
 
