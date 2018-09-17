@@ -21,6 +21,8 @@ module.exports = {
           }
         ]
       },
+      { test: /\.jpg$/, use: [ "file-loader" ] },
+      { test: /\.png$/, use: [ "url-loader?mimetype=image/png" ] },
       {
         test: /\.scss$/,
         use: [
