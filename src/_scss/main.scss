@@ -1,12 +1,28 @@
 @charset "utf-8";
+
+//Setting variables before bulma import
+$input-focus-border-color: #73bd4c;
+$input-focus-box-shadow-color: #73bd4c;
+
 @import "../../node_modules/bulma/bulma.sass";
 @import '../../node_modules/aos/dist/aos.css';
 @import "mixins.scss";
+@import "helpers.scss";
 @import "animations.scss";
+@import "zt.scss";
 
 @import "../modules/modal/modal.scss";
 
 $color-orange: #f98a09;
+
+body {
+  font-size: 19px;
+  background-color: #ebedf2;
+}
+
+.input:focus {
+  outline: 0;
+}
 
 .main {
   display: flex;
@@ -14,6 +30,63 @@ $color-orange: #f98a09;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+}
+
+a {
+  color: black;
+}
+
+.nav {
+  background-color: #fff;
+  position: relative;
+  .column {
+    padding: 30px 50px;
+    padding-bottom: 15px;
+  }  
+  a {
+    vertical-align: middle;
+  }
+  .zt-logo {
+    vertical-align: middle;
+  }
+}
+
+.phone {
+  font-size: 24px;
+}
+
+.parrot {
+  &__text {
+    position: absolute;
+    top: 260px;
+    left: 65vw;
+    line-height: 1.2;
+    font-size: 2.2vw;
+    @include breakpoint(lg) {
+      font-size: 35px;
+      top: 280px;
+      left: 780px;
+    }
+  }
+}
+
+.forms {
+  padding: 0 40px 0px 40px;
+  position: relative;
+  top: -100px;
+  &__info {
+    font-size: 2rem;
+    color: black;
+    margin-bottom: 30px;
+    line-height: 1.2;
+  }
+  .input {
+    border-radius: 25px 25px 25px 0;
+    // font-size: 1.3rem;
+  }
+  .green {
+    color: $zt-green;
+  }
 }
 
 .form-example {
