@@ -39,6 +39,7 @@ a {
 .nav {
   background-color: #fff;
   position: relative;
+  z-index:2;
   .column {
     padding: 30px 50px;
     padding-bottom: 15px;
@@ -56,16 +57,23 @@ a {
 }
 
 .parrot {
+  position: relative;
   &__text {
     position: absolute;
-    top: 260px;
-    left: 65vw;
+    text-align: left;
+    top: 151px;
+    left: 4vw;
     line-height: 1.2;
-    font-size: 2.2vw;
+    font-size: 3vw;
+    @include breakpoint(xs) {
+      top: 50px;   
+      font-size: 4vw;  
+      left: 5vw;
+    }
     @include breakpoint(lg) {
       font-size: 35px;
-      top: 280px;
-      left: 780px;
+      top: 150px;
+      left: -10px;      
     }
   }
 }
