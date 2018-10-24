@@ -30,7 +30,7 @@ let prepareForms = () => {
         undefined, 
         {wrapper: '.field', error: '.error-message', fieldWarningClass: 'is-danger'}
     )
-    const ыьыАщкь = new Form(
+    const smsForm = new Form(
         document.querySelector('.sms-form'),
         undefined, 
         undefined, 
