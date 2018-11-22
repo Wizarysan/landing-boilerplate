@@ -12,12 +12,12 @@ $input-focus-box-shadow-color: #73bd4c;
 @import "zt.scss";
 
 @import "../modules/modal/modal.scss";
+@import "../modules/quiz/quiz.scss";
 
 $color-orange: #f98a09;
 
 body {
   font-size: 19px;
-  background-color: #ebedf2;
 }
 
 .input:focus {

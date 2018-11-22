@@ -4341,7 +4341,152 @@ function () {
 }();
 
 
+// CONCATENATED MODULE: ./src/modules/quiz/index.js
+function quiz_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function quiz_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function quiz_createClass(Constructor, protoProps, staticProps) { if (protoProps) quiz_defineProperties(Constructor.prototype, protoProps); if (staticProps) quiz_defineProperties(Constructor, staticProps); return Constructor; }
+
+var Quiz =
+/*#__PURE__*/
+function () {
+  function Quiz(target, id, title, qst) {
+    var _this = this;
+
+    quiz_classCallCheck(this, Quiz);
+
+    this.id = id;
+    this.target = document.querySelector(target);
+    this.backButton = this.target.querySelector('.quiz__back');
+    this.qst = qst;
+    this.currentQuestion = 0;
+    this.questionsCount = qst.length;
+    this.chosen = [];
+    this.setCounter(1);
+    var h = document.createElement("H1"),
+        t = document.createTextNode(title);
+    h.classList.add('quiz__title');
+    h.appendChild(t);
+    this.target.prepend(h);
+    this.questions = qst.map(function (item, qi) {
+      var wrp = document.createElement("div"),
+          qst = document.createElement("p"),
+          t = document.createTextNode(item.question),
+          answersWrp = document.createElement("div"),
+          answers = item.answers.map(function (element, i) {
+        var answer = document.createElement("div"),
+            answerText = document.createElement("p"),
+            answerImg = document.createElement("img"),
+            atext = document.createTextNode(element.text);
+        answer.classList.add('quiz__answer');
+        answerText.appendChild(atext);
+        answerImg.src = element.image;
+        answer.id = "".concat(qi, "-").concat(i);
+        answer.appendChild(answerImg);
+        answer.appendChild(answerText);
+        answersWrp.appendChild(answer);
+        answersWrp.classList.add('quiz__answers');
+        answer.addEventListener('click', function () {
+          return _this.chooseAnswer(qi, i, item.question);
+        });
+        return answer;
+      });
+      qst.appendChild(t);
+      wrp.appendChild(qst).appendChild(answersWrp);
+      wrp.dataset.qst = qi;
+      wrp.className = 'quiz__question';
+
+      if (qi == _this.currentQuestion) {
+        wrp.className += ' is-active';
+      }
+
+      _this.target.querySelector('.quiz__questions').appendChild(wrp);
+    });
+    this.backButton.addEventListener('click', function () {
+      _this.questionBack();
+    });
+  }
+
+  quiz_createClass(Quiz, [{
+    key: "chooseAnswer",
+    value: function chooseAnswer(qi, id, qst) {
+      this.chosen[qi] = "".concat(qi + 1, ") ").concat(qst.substring(0, 10), "... - ").concat(id + 1, " ");
+      console.log(this.chosen);
+      this.setQuestion(qi + 1);
+    }
+  }, {
+    key: "setCounter",
+    value: function setCounter(counter, last) {
+      if (last) {
+        this.target.querySelector('.quiz__counter').innerHTML = 'Готово!';
+        return;
+      }
+
+      this.target.querySelector('.quiz__counter').innerHTML = counter + ' / ' + this.questionsCount;
+    }
+  }, {
+    key: "setQuestion",
+    value: function setQuestion(qi) {
+      this.setCounter(this.currentQuestion + 2); //For old ZT form:
+
+      this.target.dataset.result = this.chosen;
+      this.hideQuestion(this.currentQuestion);
+      this.currentQuestion = qi;
+
+      if (this.currentQuestion > 0) {
+        this.backButton.classList.add('is-active');
+      }
+
+      if (qi === this.qst.length) {
+        this.target.querySelector('.quiz__final').className += ' is-active';
+        this.setCounter(0, true);
+        return;
+      }
+
+      this.showQuestion(qi);
+    }
+  }, {
+    key: "questionBack",
+    value: function questionBack() {
+      this.setCounter(this.currentQuestion);
+
+      if (this.currentQuestion === 1) {
+        this.backButton.classList.remove('is-active');
+      }
+
+      if (this.currentQuestion === this.qst.length) {
+        this.target.querySelector('.quiz__final').classList.remove("is-active");
+        this.currentQuestion--;
+        this.showQuestion(this.currentQuestion);
+        return;
+      }
+
+      this.hideQuestion(this.currentQuestion);
+      this.currentQuestion--;
+      this.showQuestion(this.currentQuestion);
+    }
+  }, {
+    key: "hideQuestion",
+    value: function hideQuestion(qi) {
+      document.querySelector("[data-qst=\"".concat(qi, "\"]")).classList.remove("is-active");
+    }
+  }, {
+    key: "showQuestion",
+    value: function showQuestion(qi) {
+      document.querySelector("[data-qst=\"".concat(qi, "\"]")).classList.add("is-active");
+    }
+  }, {
+    key: "send",
+    value: function send(url) {}
+  }]);
+
+  return Quiz;
+}();
+
+
 // CONCATENATED MODULE: ./src/index.js
+
 
 
 
@@ -4356,36 +4501,49 @@ var src_addModals = function addModals() {
 };
 
 var src_prepareForms = function prepareForms() {
-  // const testForm = new Form(
-  //     document.querySelector('.test-form'),
-  //     'test.php', 
-  //     undefined, 
-  //     {wrapper: '.field', error: '.error-message', fieldWarningClass: 'is-danger'}
-  // )
-  var loginForm = new Form(document.querySelector('.login-form'), undefined, undefined, {
-    wrapper: '.field',
-    error: '.error-message',
-    fieldWarningClass: 'is-danger'
-  });
-  var phoneForm = new Form(document.querySelector('.phone-form'), undefined, undefined, {
-    wrapper: '.field',
-    error: '.error-message',
-    fieldWarningClass: 'is-danger'
-  });
-  var ыьыАщкь = new Form(document.querySelector('.sms-form'), undefined, undefined, {
+  var testForm = new Form(document.querySelector('.test-form'), 'test.php', undefined, {
     wrapper: '.field',
     error: '.error-message',
     fieldWarningClass: 'is-danger'
   });
   inputmask_default()().mask(document.querySelectorAll("input"));
-  document.querySelector('.js-reveal-sms').addEventListener('click', function () {
-    document.querySelector('.phone-form').classList.add('is-hidden');
-    document.querySelector('.sms-form').classList.remove('is-hidden');
-  });
-}; // ready([addModals, prepareForms])
+};
 
+var src_createQuiz = function createQuiz() {
+  var testQuiz = new Quiz('#test-quiz', 't-quiz', 'Тестовый Квиз', [{
+    question: 'Какой стиль вам нравится?',
+    answers: [{
+      text: 'Хайтек',
+      image: 'test1.jpg'
+    }, {
+      text: 'Второе название стиля',
+      image: 'test2.jpg'
+    }, {
+      text: 'Ещё какое-то название стиля',
+      image: 'test3.jpg'
+    }]
+  }, {
+    question: 'Прив чё дел?',
+    answers: [{
+      text: 'Да',
+      image: 'test1.jpg'
+    }, {
+      text: 'Нет',
+      image: 'test2.jpg'
+    }]
+  }, {
+    question: 'Ещё один вопрос?',
+    answers: [{
+      text: 'Да',
+      image: 'test1.jpg'
+    }, {
+      text: 'Нет',
+      image: 'test2.jpg'
+    }]
+  }]);
+};
 
-ready([src_prepareForms]);
+ready([src_addModals, src_prepareForms, src_createQuiz]);
 
 /***/ })
 /******/ ]);
